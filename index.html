@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ball Pong</title>
+	<link href="css/css.css" rel="stylesheet" />
+	<script src ="js/jquery/jquery-1.11.3.min.js"></script>
+	<script src ="js/BallPong.js"></script>
+	<script>
+		var ballPong = new BallPong('ball');
+
+		// Initialization
+		ballPong.setFieldWidth(800);
+		ballPong.setFieldHeight(500);
+
+		$(document).ready(function(){
+
+			$('#angle_minus').click(function(){
+				var angle = parseInt($("#angle").val());
+				if (isNaN(angle)) {
+					angle = ballPong.getDefaultAngle();
+				}
+				if (angle > 0) {
+					angle--;
+					$('#angle').val(angle);
+					ballPong.setAngle(angle);
+				}
+			});
+			$('#angle_plus').click(function(){
+				var angle = parseInt($('#angle').val());
+				if (isNaN(angle)) {
+					angle = ballPong.getDefaultAngle();
+				}
+				if(angle < 360) {
+					angle++;
+					$('#angle').val(angle);
+					ballPong.setAngle(angle);
+				}
+			});
+			$('#angle').keyup(function(event) {
+				var code = event.which;
+
+				if (code >= 35 && code <= 40) {
+					return;
+				}
+
+				var angle = parseInt($('#angle').val());
+				if (isNaN(angle)) {
+					angle = ballPong.getDefaultAngle();
+				}
+
+				if (angle < 0) {
+					angle = 0;
+				}
+				else if (angle > 360) {
+					angle = 360;
+				}
+
+				$('#angle').val(angle);
+				ballPong.setAngle(angle);
+
+			});
+
+			$('#speed_minus').click(function(){
+				var speed = parseInt($("#speed").val());
+				if (isNaN(speed)) {
+					speed = ballPong.getDefaultSpeed();
+				}
+				if (speed > 0) {
+					speed--;
+					$('#speed').val(speed);
+					ballPong.setSpeed(speed);
+				}
+			});
+			$('#speed_plus').click(function(){
+				var speed = parseInt($('#speed').val());
+				if (isNaN(speed)) {
+					speed = ballPong.getDefaultSpeed();
+				}
+				if(speed < 1000) {
+					speed++;
+					$('#speed').val(speed);
+					ballPong.setSpeed(speed);
+				}
+			});
+			$('#speed').keyup(function(event) {
+				var code = event.which;
+
+				if (code >= 35 && code <= 40) {
+					return;
+				}
+
+				var speed = parseInt($('#speed').val());
+				if (isNaN(speed)) {
+					speed = ballPong.getDefaultSpeed();
+				}
+
+				if (speed < 0) {
+					speed = 0;
+				}
+				else if (speed > 1000) {
+					speed = 1000;
+				}
+
+				$('#speed').val(speed);
+				ballPong.setSpeed(speed);
+
+			});
+
+			$('#size_minus').click(function(){
+				var size = parseInt($("#size").val());
+				if (isNaN(size)) {
+					size = ballPong.getDefaultSize();
+				}
+				if (size > 10) {
+					size--;
+					$('#size').val(size);
+					ballPong.setSize(size);
+					$('#ball')
+						.css('width', size + 'px')
+						.css('height', size + 'px');
+				}
+			});
+			$('#size_plus').click(function(){
+				var size = parseInt($('#size').val());
+				if (isNaN(size)) {
+					size = ballPong.getDefaultSize();
+				}
+				if(size < 200) {
+					size++;
+					$('#size').val(size);
+					ballPong.setSize(size);
+					$('#ball')
+						.css('width', size + 'px')
+						.css('height', size + 'px');
+				}
+			});
+			$('#size').keyup(function(event) {
+				var code = event.which;
+
+				if (code >= 35 && code <= 40) {
+					return;
+				}
+
+				var size = parseInt($('#size').val());
+				if (isNaN(size)) {
+					size = ballPong.getDefaultSize();
+				}
+
+				if (size < 10) {
+					size = 10;
+				}
+				else if (size > 200) {
+					size = 200;
+				}
+
+				$('#size').val(size);
+				ballPong.setSize(size);
+				$('#ball')
+					.css('width', size + 'px')
+					.css('height', size + 'px');
+			});
+
+			$('#startstop').click(function () {
+				if (ballPong.getIsStarted()) {
+					ballPong.stop();
+					$('#startstop').html('Start');
+				}
+				else {
+					ballPong.start();
+					$('#startstop').html('Stop');
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Ball Pong</h1>
+	<label for="angle">Angle:</label>
+	<button id="angle_minus" class="btn">-</button>
+		<input type="text" class="input" id="angle" value="30"/>
+	<button id="angle_plus" class="btn">+</button>
+
+	<label for="speed">Speed:</label>
+	<button id="speed_minus" class="btn">-</button>
+		<input type="text" class="input" id="speed" value="500"/>
+	<button id="speed_plus" class="btn">+</button>
+
+	<label for="size">Ball Size:</label>
+	<button id="size_minus" class="btn">-</button>
+		<input type="text" class="input" id="size" value="50"/>
+	<button id="size_plus" class="btn">+</button>
+
+	<button id="startstop">Start</button>
+
+	<div id="canvas">
+		<img id="ball" src="images/ball.png" style="height: 50px; width: 50px"/>
+	</div>
+</body>
+</html>

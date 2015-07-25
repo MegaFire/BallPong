@@ -1,0 +1,28 @@
+/*
+BallPong styles
+*/
+#buttons_container {
+	margin: 50px 0;
+}
+button {
+	width: 60px;
+	height: 25px;
+	margin: 0 10px 10px 0;
+	color: #0078ff;
+}
+.btn {
+	width: 30px;
+}
+.input {
+	width: 100px;
+	background-color: rgb(255, 255, 0);
+}
+#canvas {
+	height: 500px;
+	width: 800px;
+	border: 5px outset #00bb00;
+	background-color: #98ff67;
+}
+#ball {
+	z-index: 20;
+}
