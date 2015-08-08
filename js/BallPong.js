@@ -137,6 +137,7 @@ function BallPong(ballId) {
 			deltaY = distance * Math.sin(angle * (Math.PI / 180));
 
 			$('#angle').val(angle);
+			$('#slider_angle').slider('value', angle);
 		}
 
 		ballX += deltaX;

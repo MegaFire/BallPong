@@ -3,7 +3,9 @@
 <head>
 	<title>Ball Pong</title>
 	<link href="css/css.css" rel="stylesheet" />
+	<link href="js/jquery-ui-1.11.4/jquery-ui.min.css" rel="stylesheet" />
 	<script src ="js/jquery/jquery-1.11.3.min.js"></script>
+	<script src ="js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 	<script src ="js/BallPong.js"></script>
 	<script>
 		var ballPong = new BallPong('ball');
@@ -13,6 +15,46 @@
 		ballPong.setFieldHeight(500);
 
 		$(document).ready(function(){
+
+			$('#slider_angle').slider({
+				min: 0,
+				max: 360,
+				value: 30,
+				orientation: "horizontal",
+				range: "min",
+				animate: true,
+				slide: function(event, ui) {
+					$('#angle')
+							.val(ui.value)
+							.keyup();
+				}
+			});
+			$('#slider_speed').slider({
+				min: 0,
+				max: 1000,
+				value: 500,
+				orientation: "horizontal",
+				range: "min",
+				animate: true,
+				slide: function(event, ui) {
+					$('#speed')
+							.val(ui.value)
+							.keyup();
+				}
+			});
+			$('#slider_size').slider({
+				min: 10,
+				max: 200,
+				value: 50,
+				orientation: "horizontal",
+				range: "min",
+				animate: true,
+				slide: function(event, ui) {
+					$('#size')
+							.val(ui.value)
+							.keyup();
+				}
+			});
 
 			$('#angle_minus').click(function(){
 				var angle = parseInt($("#angle").val());
@@ -175,22 +217,39 @@
 </head>
 <body>
 	<h1>Ball Pong</h1>
-	<label for="angle">Angle:</label>
-	<button id="angle_minus" class="btn">-</button>
-		<input type="text" class="input" id="angle" value="30"/>
-	<button id="angle_plus" class="btn">+</button>
+	<div class="control_block">
+		<div class="control_general">
+			<label for="angle">Angle:</label>
+			<button id="angle_minus" class="btn">-</button>
+				<input type="text" class="input" id="angle" value="30"/>
+			<button id="angle_plus" class="btn">+</button>
+		</div>
+		<div id="slider_angle" class="control_slider"></div>
+	</div>
 
-	<label for="speed">Speed:</label>
-	<button id="speed_minus" class="btn">-</button>
-		<input type="text" class="input" id="speed" value="500"/>
-	<button id="speed_plus" class="btn">+</button>
+	<div class="control_block">
+		<div class="control_general">
+			<label for="speed">Speed:</label>
+			<button id="speed_minus" class="btn">-</button>
+				<input type="text" class="input" id="speed" value="500"/>
+			<button id="speed_plus" class="btn">+</button>
+		</div>
+		<div id="slider_speed" class="control_slider"></div>
+	</div>
 
-	<label for="size">Ball Size:</label>
-	<button id="size_minus" class="btn">-</button>
-		<input type="text" class="input" id="size" value="50"/>
-	<button id="size_plus" class="btn">+</button>
+	<div class="control_block">
+		<div class="control_general">
+			<label for="size">Ball Size:</label>
+			<button id="size_minus" class="btn">-</button>
+				<input type="text" class="input" id="size" value="50"/>
+			<button id="size_plus" class="btn">+</button>
+		</div>
+		<div id="slider_size" class="control_slider"></div>
+	</div>
 
-	<button id="startstop">Start</button>
+	<div class="control_block">
+		<button id="startstop" style="margin-left: 15px">Start</button>
+	</div>
 
 	<div id="canvas">
 		<img id="ball" src="images/ball.png" style="height: 50px; width: 50px"/>

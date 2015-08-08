@@ -1,6 +1,11 @@
 /*
 BallPong styles
 */
+body {
+	font-size: 14px;
+	font-family: arial, helvetica, sans-serif;
+}
+
 #buttons_container {
 	margin: 50px 0;
 }
@@ -22,7 +27,23 @@ button {
 	width: 800px;
 	border: 5px outset #00bb00;
 	background-color: #98ff67;
+	float: left;
+	clear: both;
 }
 #ball {
 	z-index: 20;
+}
+
+.control_block {
+	float: left;
+}
+.control_general {
+	float: left;
+}
+.control_slider {
+	font-size: 12px!important;
+	width: 180px;
+	margin: 2px 10px 15px 5px;
+	float: right;
+	clear: both;
 }
